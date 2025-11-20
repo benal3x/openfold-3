@@ -1,7 +1,11 @@
-FROM openfold-base
+# Copy Openfold3 folder and build dependencies needed for testing
+FROM openfoldconsortium/openfold3:stable
 
-COPY openfold3/tests /opt/openfold3/tests
-COPY environments/development.txt /opt/openfold3/development.txt
+COPY openfold3 /opt/openfold3
+COPY setup.py /opt/
+
+WORKDIR /opt/
+RUN pip install -r development.txt
+RUN python setup.py install
 
 WORKDIR /opt/openfold3
-RUN pip install -r development.txt

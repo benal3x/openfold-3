@@ -1,8 +1,8 @@
 name: Run Tests with Docker image 
 
 on:
-  pull_request:
-    branches: [main]
+  pull_request_target:
+    types: [labeled]
   push:
     branches: [main]
   workflow_dispatch:
@@ -10,6 +10,7 @@ on:
 jobs:
   start-aws-runner:
     runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.labels.*.name, 'safe to test')
     permissions:
       id-token: write
       contents: read

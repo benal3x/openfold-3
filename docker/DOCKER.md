@@ -22,7 +22,7 @@ Build the test image
 docker build \
     -f docker/development/Dockerfile \
     --target test \
-    -t openfold-docker:tests .
+    -t openfold-docker:test .
 ```
 
 Run the unit tests
